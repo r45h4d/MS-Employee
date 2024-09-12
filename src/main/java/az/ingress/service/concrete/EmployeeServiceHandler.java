@@ -1,5 +1,7 @@
 package az.ingress.service.concrete;
 
+import az.ingress.aspect.Log;
+import az.ingress.aspect.LogIgnore;
 import az.ingress.dao.entity.EmployeeEntity;
 import az.ingress.dao.repository.DepartmentRepository;
 import az.ingress.dao.repository.EmployeeRepository;
@@ -19,6 +21,7 @@ public class EmployeeServiceHandler implements EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final DepartmentRepository departmentRepository;
 
+    @Log
     @Transactional
     @Override
     public void saveEmployee(EmployeeEntity employee) {
@@ -26,6 +29,7 @@ public class EmployeeServiceHandler implements EmployeeService {
         employeeRepository.save(employee);
     }
 
+    @LogIgnore
     @Override
     public EmployeeResponse getEmployee(Long id) {
         return buildEmployeeResponse(employeeRepository.findById(id).orElseThrow(()->new NotFoundException(EMPLOYEE_NOT_FOUND.getMessage(), EMPLOYEE_NOT_FOUND.getCode())));
