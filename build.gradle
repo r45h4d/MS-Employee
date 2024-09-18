@@ -30,6 +30,8 @@ dependencies {
     //swagger
     implementation "org.springdoc:springdoc-openapi-ui:$openApiVersion"
     runtimeOnly 'org.postgresql:postgresql'
+
+    implementation 'org.redisson:redisson-spring-boot-starter:3.36.0'
 }
 
 test {
