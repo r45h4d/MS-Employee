@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create employees table
+      author: Rashad Amanov
+      changes:
+        - createTable:
+            tableName: employees
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: salary
+                  type: DECIMAL(19,2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: department_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+
+        - addForeignKeyConstraint:
+            constraintName: fk_employee_department
+            baseTableName: employees
+            baseColumnNames: department_id
+            referencedTableName: departments
+            referencedColumnNames: id
