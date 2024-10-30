@@ -26,4 +26,10 @@ public class Controller {
     public EmployeeResponse getEmployee(@PathVariable Long id){
         return employeeServiceHandler.getEmployee(id);
     }
+
+    @GetMapping("/employees/{id}/name")
+    @ResponseStatus(OK)
+    public String getEmployeeName(@PathVariable Long id) {
+        return employeeServiceHandler.getEmployeeName(id);
+    }
 }
